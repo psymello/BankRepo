@@ -26,8 +26,8 @@ class CustomerRepositoryTest {
 	@Test
 	public void testCreateCustomer() {
 		Customer customer = new Customer();
-		customer.setUsername("user02");
-		customer.setPassword("pass1");
+		customer.setUsername("newuser01");
+		customer.setPassword("pass10000");
 		
 		Customer savedCustomer = repo.save(customer);
 		
@@ -35,5 +35,19 @@ class CustomerRepositoryTest {
 		
 		assertEquals(existCustomer.getUsername(), customer.getUsername());
 	}
-
+	
+	@Test
+	public void testFindCustomerByUsername() {
+		String username = "user01";
+		Customer customer = repo.findByUsername(username);
+		assertNotNull(customer);
+	}
+	
+	@Test
+	public void testDeleteCustomerByUsername() {
+		String username = "newuser01";
+		repo.deleteByUsername(username);
+		Customer customer = repo.findByUsername(username);
+		assertNull(customer);
+	}
 }
