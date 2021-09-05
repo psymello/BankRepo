@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/home","/list_customers").authenticated()
+			.antMatchers("/home","/list_customers","/index").authenticated()
 			.antMatchers("/dashboard","/add_customers").hasRole("ADMIN")
 			.anyRequest().permitAll()
 			.and()
