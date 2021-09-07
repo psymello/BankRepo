@@ -33,7 +33,7 @@ public class EmailService {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				
-				return new PasswordAuthentication("vince4vance@gmail.com","Coco@3399");
+				return new PasswordAuthentication("******","******");
 			}
 			
 		});
