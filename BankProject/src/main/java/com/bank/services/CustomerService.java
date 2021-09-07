@@ -15,4 +15,11 @@ public class CustomerService {
 	public Customer getByUsername(String username) {
 		return customerRepository.findByUsername(username);
 	}
+	
+	public boolean checkValidUsername(String username) {
+		if(customerRepository.findByUsername(username) != null)
+			return true;
+		else
+			return false;
+	}
 }

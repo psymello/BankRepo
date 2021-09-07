@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank.model.Account;
+import com.bank.model.Customer;
 import com.bank.repo.AccountRepository;
 import com.bank.repo.CustomerRepository;
 
@@ -14,6 +15,9 @@ public class AccountService {
 	
 	@Autowired
 	AccountRepository accountRepository;
+	
+	@Autowired
+	CustomerRepository customerRepository;
 	
 	public String getAccountNumberById(Long id) {
 		Optional<Account> a = accountRepository.findById(id);
@@ -31,5 +35,11 @@ public class AccountService {
 		Optional<Account> a = accountRepository.findById(id);
 		Account account = a.get();
 		return account;
+	}
+	
+	public String getEmailByCustomerUsername(String username) {
+		Customer customer = customerRepository.findByUsername(username);
+		Account account = getAccountById(customer.getId());
+		return account.getEmail();
 	}
 }

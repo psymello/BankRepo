@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Verify OTP</title>
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	
+</head>
+<br><div class="container-fluid text-center">
+    <form th:action="@{/verifyOtp}" method="post" style="max-width: 350px; margin: 0 auto;">
+         
+        <p class="font-weight-bold">Forgot Password</p>
+        <div class="alert alert-primary" role="alert">
+ 			 An OTP has been sent to your registered email.
+		</div>
+		
+		 <div th:if="${param.error}">
+            <p class="text-danger">INCORRECT OTP</p>
+        </div>
+        
+        <div class="border border-secondary p-3 bt-3 rounded">
+            <p>Enter OTP</p>
+            <p>
+                <input type="text" name="otp" class="form-control" placeholder="Enter OTP" required autofocus/>
+            </p>
+            <p>
+                <input type="submit" value="Verify OTP" class="btn btn-primary" />
+            </p>
+        </div>
+    </form>      
+</div>
+</body>
+</html>

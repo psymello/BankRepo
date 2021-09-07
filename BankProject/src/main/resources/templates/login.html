@@ -6,19 +6,23 @@
 	
 </head>
 <br><div class="container-fluid text-center">
-    <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
-     
+    <form th:action="@{/login}" method="post" style="max-width: 450px; margin: 0 auto;">
+     	<br>
+     	<h1>Login Page</h1>
         <div th:if="${param.error}">
             <p class="text-danger">WRONG USERNAME OR PASSWORD</p>
         </div>
          
         <div class="border border-secondary p-3 rounded">
-            <p>Customer Login</p>
+            <p>Enter Credentials</p>
             <p>
                 <input type="text" name="username" class="form-control" placeholder="Username" required autofocus/>
             </p>
             <p>
                 <input type="password" name="password" class="form-control" placeholder="Password" required />
+            </p>
+            <p>
+            	<a th:href="@{/forgot}">Forgot Password</a>
             </p>
             <p>
                 <input type="submit" value="Login" class="btn btn-primary" />
