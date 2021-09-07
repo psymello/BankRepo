@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.bank.constraint.ValidPassword;
+
+
 @Entity
 @Table(name="customers")
 public class Customer {
@@ -17,7 +20,9 @@ public class Customer {
 	@Column(nullable = false, unique = true)
 	private String username;
 	
+	
 	@Column(nullable = false, length = 64)
+	@ValidPassword
 	private String password;
 	
 	public Long getId() {

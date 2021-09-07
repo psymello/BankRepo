@@ -12,7 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bank.model.Account;
 import com.bank.model.Card;
@@ -20,9 +23,11 @@ import com.bank.model.Customer;
 import com.bank.repo.AccountRepository;
 import com.bank.repo.CardRepository;
 import com.bank.repo.CustomerRepository;
+import com.bank.services.AccountService;
 
 
 @Controller
+@RequestMapping("/index")
 public class CustomerController {
 	@Autowired
 	private CustomerRepository repo;
@@ -33,28 +38,35 @@ public class CustomerController {
 	@Autowired
 	private AccountRepository accRepo;
 
-
-	private Authentication authentication;
+	@Autowired
+	private AccountService accServ;
 	
-	@GetMapping("/login")
-	public String customerLoginPageRedirect() {
-		authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication == null || authentication instanceof AnonymousAuthenticationToken)
-		{
-			return "login";
-		}
-		return "redirect: ";
+	@ModelAttribute("customer")
+	public Customer customer(Principal principal) {
+		return repo.findByUsername(principal.getName());
 	}
 	
-	@GetMapping("/index")
-	public String dashboardPage(Principal principal) {
+	@ModelAttribute("account")
+	public Account account(Principal principal) {
 		Customer customer = repo.findByUsername(principal.getName());
-		//Optional<Account> account = accRepo.findById(customer.getId());
+		return accServ.getAccountById(customer.getId());
+	}
+	
+	@ModelAttribute("card")
+	public Iterable<Card> cards(Principal principal){
+		Customer customer = repo.findByUsername(principal.getName());
 		Iterable<Card> listCard = cardRepo.findByCustomerId(customer.getId());
-		for(Card s:listCard)
-			System.out.println(s.getCardNumber());
-		System.out.println(customer.getId());
-		System.out.println(principal.getName());
+		return listCard;
+	}
+	
+	@GetMapping()
+	public String dashboardPage(Principal principal) {
+//		Customer customer = repo.findByUsername(principal.getName());
+//		Account account = accServ.getAccountById(customer.getId());
+//		Iterable<Card> listCard = cardRepo.findByCustomerId(customer.getId());
+//		for(Card s:listCard)
+//			System.out.println(s.getCardNumber());
+//		
 		return "index";
 	}
 	
@@ -64,13 +76,13 @@ public class CustomerController {
 		return "index";
 	}
 
-	@PostMapping("/process_add")
-	public String processAdd(Customer customer) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPassword = encoder.encode(customer.getPassword());
-		customer.setPassword(encodedPassword);
-		repo.save(customer);
-		return "add_success";
-	}
+//	@PostMapping("/process_add")
+//	public String processAdd(Customer customer) {
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		String encodedPassword = encoder.encode(customer.getPassword());
+//		customer.setPassword(encodedPassword);
+//		repo.save(customer);
+//		return "add_success";
+//	}
 	
 }

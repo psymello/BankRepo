@@ -19,7 +19,59 @@
 	</ul>
 	
 	<div class="container text-center">
-		<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+		<div class="font-weight-bold">
+			Welcome <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+  	<div class="row justify-content-center align-self-center">
+    	<div class="col-md-5 rounded" >
+    		<div class="rounded" style="background-color:lightgrey;">
+      		<div class="page-content page-container" id="page-content">
+			    <div class="padding">
+			        <div class="text-center p-5">
+			            <h2 class="text-highlight">Account</h2>
+			        </div>
+			        <div class="text-center mb-3">
+			            <div class="block d-inline-flex mb-3">
+			                <div class="p-4 p-sm-4 b-r rounded" style="background-color:white;"> 
+			                	<div class="text-muted">Account Number</div>
+			                	<span class="h1" th:text="${account.accountNumber}">Account Number</span>
+			                </div>
+			                <div class="p-4 p-sm-4 ml-3 rounded" style="background-color:white;"> 
+			                	<div class="text-muted">Account Balance</div>
+			                	<sup class="text-sm" style="top: -0.5em">$</sup>
+			                	<span class="h1" th:text="${account.accountBalance}">Account Balance</span>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    </div>
+			</div>
+    	</div>
+    	
+    	 <div class="col-md-6 ml-3 rounded" style="background-color:grey;">
+		      <div class="page-content page-container" id="page-content">
+			    <div class="padding">
+			        <div class="text-center p-5">
+			            <h2 class="text-highlight">Cards</h2>
+			        </div>
+			        <div class="text-center mb-3">
+			            <div class="block d-flex flex-column">
+			                <div class="p-4 p-sm-5 b-r mb-3 rounded" th:each="cards: ${card}" style="background-color:white;"> 
+			                	<div class="text-muted">Card Number</div>
+			                	<span class="h1" th:text="${cards.cardNumber}">Account Number</span>
+			                	<form th:action="@{/changePin/{id}(id=${cards.id})}" th:object="${cards}" method="post">    
+	                        		<button class="btn btn-sm btn-rounded btn-primary" type="submit"/>Change Pin
+	                    		</form>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+    	</div>
+  	</div>
 	</div>
 </body>
 </html>
