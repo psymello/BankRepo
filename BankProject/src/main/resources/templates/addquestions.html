@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Change Pin</title>
+	<title>Add Success</title>
 	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	
 </head>
 <body>
 	<div class="container text-center">
-		<h1>Change Card Pin</h1>
+		<h1>Add Security Questions</h1>
 	
-	<form th:action="@{/cardUpdate}" method="post"
+	<form th:action="@{/addQuestions}" method="post"
 			style="max-width:600px; margin:0 auto;">
     		
     	<div class="border border-secondary p-3 rounded">
-			<div class="form-group row">
-				<label class="col-form-label col-4">New Pin</label>
-				<div class="col-8">
-					<input type="text" class="form-control" th:field="${changecard.cardPin}" minlength="4" maxlength="4" required/>
-				</div>
-			</div>
 			
-			<br>
 			<p class="font-weight-bold">Answer Security Questions</p>
 			<div th:if="${param.error}">
-            	<p class="text-danger">One or More Answers Incorrect</p>
+            	<p class="text-danger">Security Questions Not Update. Please Update.</p>
         	</div>
 			<div class="form-group column">
 				<label class="col-form-label col-8">Question 1: Birth City</label>
@@ -49,7 +42,7 @@
 			</div>
 
 			<div>
-				<button type="submit" class="btn btn-primary">Change Pin</button>
+				<button type="submit" class="btn btn-primary">Add Questions</button>
 			</div>
 		</div>	
 		</form>

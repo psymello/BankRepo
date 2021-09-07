@@ -10,17 +10,17 @@
   		<li class="nav-item">
    			 <a class="nav-link active" href="">Home</a>
  		</li>
- 		<li class="nav-item">
-    		<a class="nav-link" href="/home">Account</a>
-  		</li>
 		<li class="nav-item ml-auto">
 		    <a class="nav-link " href="/logout">Logout</a>
 		</li>
 	</ul>
 	
-	<div class="container text-center">
+	<div class="container text-center p-2">
+		<br>
+		<div class="text-highlight">
 		<div class="font-weight-bold">
-			Welcome <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+			<h4>Welcome <span th:text="${#authentication.getPrincipal().getUsername()}"></span></h4>
+		</div>
 		</div>
 	</div>
 	<br>
@@ -43,6 +43,14 @@
 			                	<div class="text-muted">Account Balance</div>
 			                	<sup class="text-sm" style="top: -0.5em">$</sup>
 			                	<span class="h1" th:text="${account.accountBalance}">Account Balance</span>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="text-center mb-3">
+			            <div class="block d-flex flex-column">
+			                <div class="p-4 p-sm-4 b-r mb-3 mx-5 rounded" style="background-color:white;"> 
+			                	<div class="text-muted">Account Number</div>
+			                	<span class="h1" th:text="${account.accountNumber}">Account Number</span>
 			                </div>
 			            </div>
 			        </div>
