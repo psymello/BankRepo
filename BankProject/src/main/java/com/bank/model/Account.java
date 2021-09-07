@@ -16,6 +16,12 @@ public class Account {
 	
 	@Column(nullable = false)
 	private Long accountBalance;
+	
+	@Column(nullable = false)
+	private String email;
+	
+	@Column(nullable = false)
+	private String phone;
 
 	public Long getId() {
 		return id;
@@ -41,4 +47,20 @@ public class Account {
 		this.accountBalance = accountBalance;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
 }

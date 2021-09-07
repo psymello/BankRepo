@@ -48,9 +48,21 @@
 			        </div>
 			        <div class="text-center mb-3">
 			            <div class="block d-flex flex-column">
-			                <div class="p-4 p-sm-4 b-r mb-3 mx-5 rounded" style="background-color:white;"> 
-			                	<div class="text-muted">Account Number</div>
-			                	<span class="h1" th:text="${account.accountNumber}">Account Number</span>
+			                <div class="p-4 p-sm-12 b-r mb-3 mx-4 rounded" style="background-color:white;">
+			                <table class="table-borderless mx-auto w-auto">
+			                	<tr class="h4">
+			                		<td class="text-muted">Email</td>
+			                		<td> : </td>
+			                		<td th:text="${account.email}"></td>
+			                	</tr>
+			                	
+			                	<tr class="h4">
+			                		<td  class="text-muted">Phone</td>
+			                		<td>&emsp;:&emsp; </td>
+			                		<td th:text="${account.phone}"></td>
+			                	</tr>
+			                </table> 
+			                	
 			                </div>
 			            </div>
 			        </div>

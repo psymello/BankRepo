@@ -20,7 +20,6 @@ public class Customer {
 	@Column(nullable = false, unique = true)
 	private String username;
 	
-	
 	@Column(nullable = false, length = 64)
 	@ValidPassword
 	private String password;
