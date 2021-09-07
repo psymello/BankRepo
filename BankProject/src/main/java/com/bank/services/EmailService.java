@@ -17,7 +17,7 @@ public class EmailService {
 	
 	public static void sendEmail(String subject, String message, String to) {
 		
-		String from = "vince4vance@gmail.com";
+		String from = "*******";
 		
 		String host = "smtp.gmail.com";
 		
